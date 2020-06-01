@@ -18,8 +18,6 @@ from sklearn.linear_model import LogisticRegression as lr
 from mlxtend.frequent_patterns import apriori, association_rules
 from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
 
-# X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-
-
 # Database Creation in MySQL
 def mysql_2018(data2018):
     
@@ -158,7 +156,7 @@ def mysql_fetch2019():
     
     return
     
-#-------------------------------------CLUSTERING-------------------------------------------------------------------------------
+#CLUSTERING
 def clutering_2018(data1):
     clustering_data18=data1
     clustering_data19=data2
@@ -183,7 +181,7 @@ def clutering_2018(data1):
     
     return data1
 
-#-------------------------------------HIERARCHICAL CLUSTERING--------------------------------------------------
+#HIERARCHICAL CLUSTERING
 # Hierarical Cluster of Ward Linkage.
 def Hierar_cluster1(norm_data):
     w_clust=l(norm_data,method="ward",metric="euclidean")  # Calling Ward linkage Technique of Hierarical clustering.
@@ -208,7 +206,7 @@ def Hierar_cluster3(norm_data):
     
     return norm_data
 
-#-------------------------------------K-MEANS CLUSTERING--------------------------------------------------    
+#K-MEANS CLUSTERING
 def kmeans_clust(norm_data):
     k=list(range(2,15)) # Creating a list of clusters ranging from 2 to 15.
     TWSS=[]
@@ -228,7 +226,7 @@ def kmeans_clust(norm_data):
     
     return norm_data
 
-#-------------------------------------ASSOCIATION RULES-----------------------------------------------------
+#ASSOCIATION RULES
 def asso_18_19(data1,data2):
     asso_18=data1[['PLAN_CODE', 'RELATIONSHIP', 'HOSPITAL_NAME', 'DIAGNOSIS1']]
     asso_19=data2[['PLAN_CODE', 'RELATIONSHIP', 'HOSPITAL_NAME', 'DIAGNOSIS1']]
@@ -267,7 +265,7 @@ def association_rules_lift(asso_data):
     
     return asso_data,confi_values
 
-#-------------------------------------RECOMMENDATION SYSTEM-----------------------------------------------------
+#RECOMMENDATION SYSTEM
 # Recommendation Model for Hosiptals based on past claims in 2018-19
 def recom_hos(data1,data2):
     data18_hos=pd.DataFrame(data1.groupby("HOSPITAL_NAME")["CLAIM_TOT_BILL_AMT"].mean())
@@ -334,7 +332,7 @@ def recom_diag(data1,data2):
     Corr_Dis.dropna(inplace=True)
     print(Corr_Dis)        
  
-#-------------------------------------EDA-------------------------------------------------------------------------------------------------------------------------------------
+#EDA
 # EDA on FY2018 Sheet
 def eda_2018 (data1):
     data1.head()
@@ -501,7 +499,7 @@ def eda_2019 (data2):
     
     return data2
 
-#-------------------------------------MAIN FUNCTION-----------------------------------------------------------------------------------------
+#MAIN FUNCTION
 def main():    
     data2018=xlrd.open_workbook("C:/Users/hp/Dropbox/ExcelR/Projects/Employee Insurance Claim Analysis/Sample Data/Refined_MASTER_DATA_INPATIENT.xlsx")    
     mysql_2018(data2018)
@@ -535,7 +533,6 @@ def main():
     # Recommendation of Diagnosis on the basis of Bill Amounts in each Plan Code
     recom_diag(data1,data2)    
     
-# X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-
-
 # Executing Programe by calling Main Function
-main()
+if __name__ == '__main__':
+    main()
